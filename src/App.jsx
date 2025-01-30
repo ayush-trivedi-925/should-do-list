@@ -4,7 +4,7 @@ import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
 import "./index.css";
 import "./fanta.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function App() {
   // const todos = [
   //   { input: "Wake up early in the morning", complete: false },
@@ -21,11 +21,13 @@ function App() {
   const handleAddTodo = (newTodo) => {
     const newTodoList = [...todos, { input: newTodo, complete: false }];
     setTodos(newTodoList);
+    handleSaveData(newTodoList);
   };
 
   const handleDeleteTodo = (index) => {
     const newTodoList = todos.filter((val, valIndex) => valIndex !== index);
     setTodos(newTodoList);
+    handleSaveData(newTodoList);
   };
 
   const handleCompleteTodo = (index) => {
@@ -34,7 +36,20 @@ function App() {
     completeTodo["complete"] = true;
     newTodoList[index] = completeTodo;
     setTodos(newTodoList);
+    handleSaveData(newTodoList);
   };
+
+  function handleSaveData(currTodos) {
+    localStorage.setItem("todo-app", JSON.stringify({ todos: currTodos }));
+  }
+
+  useEffect(() => {
+    if (!localStorage || !localStorage.getItem("todo-app")) {
+      return;
+    }
+    let db = JSON.parse(localStorage.getItem("todo-app"));
+    setTodos(db.todos);
+  }, []);
 
   return (
     <>

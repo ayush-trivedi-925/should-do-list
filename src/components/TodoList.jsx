@@ -18,7 +18,7 @@ export default function TodoList({
       <>
         <TodoCard
           key={todoIndex}
-          todoIndex={todoIndex}
+          todoIndex={todos.findIndex((val) => val.input == todo.input)}
           handleDeleteTodo={handleDeleteTodo}
           handleCompleteTodo={handleCompleteTodo}
           todo={todo}
