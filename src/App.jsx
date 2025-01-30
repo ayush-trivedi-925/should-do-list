@@ -23,6 +23,11 @@ function App() {
     setTodos(newTodoList);
   };
 
+  const handleDeleteTodo = (index) => {
+    const newTodoList = todos.filter((val, valIndex) => valIndex !== index);
+    setTodos(newTodoList);
+  };
+
   return (
     <>
       <Header todos={todos} />
@@ -31,7 +36,11 @@ function App() {
         setSelectedTab={setSelectedTab}
         todos={todos}
       />
-      <TodoList selectedTab={selectedTab} todos={todos} />
+      <TodoList
+        handleDeleteTodo={handleDeleteTodo}
+        selectedTab={selectedTab}
+        todos={todos}
+      />
       <TodoInput handleAddTodo={handleAddTodo} />
     </>
   );
