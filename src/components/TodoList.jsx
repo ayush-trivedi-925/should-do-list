@@ -1,11 +1,10 @@
 import TodoCard from "./TodoCard";
 
-export default function TodoList({ todos }) {
-  const tab = "All";
+export default function TodoList({ todos, selectedTab }) {
   const filterTodos =
-    tab === "All"
+    selectedTab === "All"
       ? todos
-      : tab === "Open"
+      : selectedTab === "Open"
       ? todos.filter((val) => !val.complete)
       : todos.filter((val) => val.complete);
 

@@ -1,4 +1,4 @@
-export default function Tabs({ todos }) {
+export default function Tabs({ todos, selectedTab, setSelectedTab }) {
   // Mapping in JavaScript
   const tabs = ["All", "Open", "Completed"];
   return (
@@ -11,13 +11,22 @@ export default function Tabs({ todos }) {
             ? todos.filter((val) => !val.complete).length
             : todos.filter((val) => val.complete).length;
         return (
-          <button className="tab-button" key={tabIndex}>
+          <button
+            className={
+              "tab-button" + (tab === selectedTab ? "selected-tab" : "")
+            }
+            key={tabIndex}
+            onClick={() => {
+              setSelectedTab(tab);
+            }}
+          >
             <h4>
               {tab} <span>({numOfTasks})</span>
             </h4>
           </button>
         );
       })}
+      <hr />
     </nav>
   );
 }
