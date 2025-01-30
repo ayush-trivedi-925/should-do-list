@@ -1,6 +1,11 @@
 import TodoCard from "./TodoCard";
 
-export default function TodoList({ todos, selectedTab, handleDeleteTodo }) {
+export default function TodoList({
+  todos,
+  selectedTab,
+  handleDeleteTodo,
+  handleCompleteTodo,
+}) {
   const filterTodos =
     selectedTab === "All"
       ? todos
@@ -15,6 +20,7 @@ export default function TodoList({ todos, selectedTab, handleDeleteTodo }) {
           key={todoIndex}
           todoIndex={todoIndex}
           handleDeleteTodo={handleDeleteTodo}
+          handleCompleteTodo={handleCompleteTodo}
           todo={todo}
         />
       </>

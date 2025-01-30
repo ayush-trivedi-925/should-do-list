@@ -28,6 +28,14 @@ function App() {
     setTodos(newTodoList);
   };
 
+  const handleCompleteTodo = (index) => {
+    let newTodoList = [...todos];
+    let completeTodo = todos[index];
+    completeTodo["complete"] = true;
+    newTodoList[index] = completeTodo;
+    setTodos(newTodoList);
+  };
+
   return (
     <>
       <Header todos={todos} />
@@ -38,6 +46,7 @@ function App() {
       />
       <TodoList
         handleDeleteTodo={handleDeleteTodo}
+        handleCompleteTodo={handleCompleteTodo}
         selectedTab={selectedTab}
         todos={todos}
       />
